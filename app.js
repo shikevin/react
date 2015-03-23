@@ -3,7 +3,14 @@ var app = express();
 
 app.set('port', process.env.PORT || 3000);
 
+// uses the .html extension instead of renaming views to *.ejs
+app.engine('.html', require('ejs').__express);
+ 
+// sets folder to where html pages are kept
 app.set('views', __dirname + '/views');
+ 
+// allows filename to be passed to render function without extension
+app.set('view engine', 'html');
 
 app.get('/', function (req, res) {
   res.render('index.html');
